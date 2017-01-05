@@ -61,6 +61,8 @@
     <Compile Include="CommandPacketGetPacketBufferTests.cs" />
     <Compile Include="CommandPacketReadTests.cs" />
     <Compile Include="CommandPacketTests.cs" />
+    <Compile Include="Commands\MsgTests.cs" />
+    <Compile Include="PacketTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
