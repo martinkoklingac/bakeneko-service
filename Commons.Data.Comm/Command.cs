@@ -6,26 +6,42 @@ namespace Commons.Data.Comm
     public static class Command
     {
         #region PRIVATE FIELDS
-        private static readonly Cmd[] COMMANDS = Enum.GetValues(typeof(Cmd))
-            .Cast<Cmd>()
+        private static readonly ReqCmd[] COMMANDS = Enum.GetValues(typeof(ReqCmd))
+            .Cast<ReqCmd>()
             .ToArray();
         #endregion
 
         #region PUBLIC METHODS
-        public static Cmd Convert(byte cmd)
+        public static ReqCmd Convert(byte cmd)
         {
             return COMMANDS.Any(x => cmd == (byte)x)
-                ? (Cmd)cmd
-                : Cmd.Undefined;
+                ? (ReqCmd)cmd
+                : ReqCmd.Undefined;
         }
 
-        public static Cmd Convert(int cmd) { return Convert((byte)cmd); }
+        public static ReqCmd Convert(int cmd) { return Convert((byte)cmd); }
 
-        public static byte Convert(Cmd cmd) { return (byte)cmd; }
+        public static byte Convert(ReqCmd cmd) { return (byte)cmd; }
         #endregion
 
         #region INTERNAL TYPES
-        public enum Cmd : byte
+        /// <summary>
+        /// Packet command - determines what kind of data
+        /// and / or operation the packet encapsulates
+        /// </summary>
+        public enum PacCmd : byte
+        {
+            Ack = 0,
+            Message = 1,
+            End = 2,
+            Timeout = 3,
+            Error = 4
+        }
+
+        /// <summary>
+        /// Bakeneko service command
+        /// </summary>
+        public enum ReqCmd : byte
         {
             Undefined = 0,
 
