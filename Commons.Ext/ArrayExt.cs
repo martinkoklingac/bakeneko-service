@@ -27,5 +27,16 @@ namespace Commons.Ext
 
             return result;
         }
+
+        /// <summary>
+        /// Check if an <paramref name="array"/> is null or has no elements
+        /// </summary>
+        /// <typeparam name="T">Type of <paramref name="array"/> elements</typeparam>
+        /// <param name="array">array of type <typeparamref name="T"/></param>
+        /// <returns>bool</returns>
+        public static bool IsNullOrEmpty<T>(this T[] array)
+        {
+            return array == null || array.Length == 0;
+        }
     }
 }
