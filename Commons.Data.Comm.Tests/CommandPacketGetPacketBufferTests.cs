@@ -13,7 +13,7 @@ namespace Commons.Data.Comm
         public void GetPacketBuffer_CommandWithNullData_Test()
         {
             //Arrange
-            const Command.Cmd cmd = Command.Cmd.Status;
+            const Command.ReqCmd cmd = Command.ReqCmd.Status;
             var command = new CommandPacket(cmd, null);
             var expectedCommandByte = Command.Convert(cmd);
             var expectedDataLengthBuffer = new byte[CommandPacket.DATA_LENGTH_SIZE] { 0xFF, 0xFF, 0xFF, 0xFF };
@@ -33,7 +33,7 @@ namespace Commons.Data.Comm
         public void GetPacketBuffer_CommandWithEmptyData_Test()
         {
             //Arrange
-            const Command.Cmd cmd = Command.Cmd.Status;
+            const Command.ReqCmd cmd = Command.ReqCmd.Status;
             var command = new CommandPacket(cmd, string.Empty);
             var expectedCommandByte = Command.Convert(cmd);
             var expectedDataLengthBuffer = new byte[CommandPacket.DATA_LENGTH_SIZE] { 0x00, 0x00, 0x00, 0x00 };
@@ -53,7 +53,7 @@ namespace Commons.Data.Comm
         public void GetPacketBuffer_CommandWithMinData_Test()
         {
             //Arrange
-            const Command.Cmd cmd = Command.Cmd.Status;
+            const Command.ReqCmd cmd = Command.ReqCmd.Status;
             var command = new CommandPacket(cmd, "X");
             var expectedCommandByte = Command.Convert(cmd);
             var expectedDataLengthBuffer = new byte[CommandPacket.DATA_LENGTH_SIZE] { 0x01, 0x00, 0x00, 0x00 };
@@ -76,7 +76,7 @@ namespace Commons.Data.Comm
         public void GetPacketBuffer_CommandWithData_Test()
         {
             //Arrange
-            const Command.Cmd cmd = Command.Cmd.Status;
+            const Command.ReqCmd cmd = Command.ReqCmd.Status;
             var command = new CommandPacket(cmd, "XYZ");
             var expectedCommandByte = Command.Convert(cmd);
             var expectedDataLengthBuffer = new byte[CommandPacket.DATA_LENGTH_SIZE] { 0x03, 0x00, 0x00, 0x00 };

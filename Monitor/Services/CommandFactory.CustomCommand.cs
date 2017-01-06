@@ -80,7 +80,7 @@ namespace Monitor.Services
                     {
                         Console.WriteLine();
 
-                        var cp = new CommandPacket(__Command.Cmd.Status, null);
+                        var cp = new CommandPacket(__Command.ReqCmd.Status, null);
 
                         do
                         {
@@ -89,10 +89,10 @@ namespace Monitor.Services
                             cp = CommandPacket.Read(ns);
                             Console.WriteLine($"{cp.Cmd} --> {cp.Data}");
 
-                            if(cp.Cmd == __Command.Cmd.Message)
-                                cp = new CommandPacket(__Command.Cmd.Ack, null);
+                            if(cp.Cmd == __Command.ReqCmd.Message)
+                                cp = new CommandPacket(__Command.ReqCmd.Ack, null);
 
-                        } while (cp.Cmd != __Command.Cmd.End && cp.Cmd != __Command.Cmd.Error);
+                        } while (cp.Cmd != __Command.ReqCmd.End && cp.Cmd != __Command.ReqCmd.Error);
 
 
                         sender.Shutdown(SocketShutdown.Both);

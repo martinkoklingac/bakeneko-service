@@ -13,7 +13,7 @@ namespace Commons.Data.Comm
         public void CmdProperty_IsSet_Test()
         {
             //Arrange
-            const Command.Cmd expectedCommand = Command.Cmd.DumpStats;
+            const Command.ReqCmd expectedCommand = Command.ReqCmd.DumpStats;
             var commandPacket = new CommandPacket(expectedCommand, It.IsAny<string>());
 
             //Act
@@ -30,7 +30,7 @@ namespace Commons.Data.Comm
             const string data = "data_is_too_long";
 
             //Assert
-            Assert.That(() => new CommandPacket(It.IsAny<Command.Cmd>(), data), Throws.InstanceOf<ArgumentOutOfRangeException>());
+            Assert.That(() => new CommandPacket(It.IsAny<Command.ReqCmd>(), data), Throws.InstanceOf<ArgumentOutOfRangeException>());
         }
 
         [Test]
@@ -38,7 +38,7 @@ namespace Commons.Data.Comm
         {
             //Arrange
             const string expectedData = "Data";
-            var commandPacket = new CommandPacket(It.IsAny<Command.Cmd>(), expectedData);
+            var commandPacket = new CommandPacket(It.IsAny<Command.ReqCmd>(), expectedData);
 
             //Act
             var actualData = commandPacket.Data;
@@ -53,7 +53,7 @@ namespace Commons.Data.Comm
             //Arrange
             const string data = null;
             const int expectedDataLength = -1;
-            var commandPacket = new CommandPacket(It.IsAny<Command.Cmd>(), data);
+            var commandPacket = new CommandPacket(It.IsAny<Command.ReqCmd>(), data);
 
             //Act
             var actualDataLength = commandPacket.DataLength;
@@ -68,7 +68,7 @@ namespace Commons.Data.Comm
             //Arrange
             const string data = "";
             const int expectedDataLength = 0;
-            var commandPacket = new CommandPacket(It.IsAny<Command.Cmd>(), data);
+            var commandPacket = new CommandPacket(It.IsAny<Command.ReqCmd>(), data);
 
             //Act
             var actualDataLength = commandPacket.DataLength;
@@ -83,7 +83,7 @@ namespace Commons.Data.Comm
             //Arrange
             const string data = "Data"; //data.Length = 4
             const int expectedDataLength = 4;
-            var commandPacket = new CommandPacket(It.IsAny<Command.Cmd>(), data);
+            var commandPacket = new CommandPacket(It.IsAny<Command.ReqCmd>(), data);
 
             //Act
             var actualDataLength = commandPacket.DataLength;

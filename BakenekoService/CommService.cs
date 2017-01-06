@@ -224,7 +224,7 @@ namespace BakenekoService
                             if (ct.IsCancellationRequested)
                             {
                                 _log.Info("Cancelled!");
-                                responseCmd = new CommandPacket(Command.Cmd.End, null);
+                                responseCmd = new CommandPacket(Command.ReqCmd.End, null);
                                 ns.Write(responseCmd.GetPacketBuffer(), 0, CommandPacket.PACKET_SIZE);
                                 break;
                             }
@@ -235,33 +235,33 @@ namespace BakenekoService
 
                             _log.Info($"Processing ({messageCounter}) : {requestCmd.Cmd}");
 
-                            if (requestCmd.Cmd == Command.Cmd.Status)
+                            if (requestCmd.Cmd == Command.ReqCmd.Status)
                             {
-                                responseCmd = new CommandPacket(Command.Cmd.Message, $"Msg: {messageCounter}");
+                                responseCmd = new CommandPacket(Command.ReqCmd.Message, $"Msg: {messageCounter}");
                                 ns.Write(responseCmd.GetPacketBuffer(), 0, CommandPacket.PACKET_SIZE);
                             }
-                            else if (requestCmd.Cmd == Command.Cmd.Ack 
+                            else if (requestCmd.Cmd == Command.ReqCmd.Ack 
                                 && messageCounter <= messages)
                             {
-                                responseCmd = new CommandPacket(Command.Cmd.Message, $"Msg: {messageCounter}");
+                                responseCmd = new CommandPacket(Command.ReqCmd.Message, $"Msg: {messageCounter}");
                                 ns.Write(responseCmd.GetPacketBuffer(), 0, CommandPacket.PACKET_SIZE);
                             }
-                            else if (requestCmd.Cmd == Command.Cmd.Ack 
+                            else if (requestCmd.Cmd == Command.ReqCmd.Ack 
                                 && messageCounter > messages)
                             {
-                                responseCmd = new CommandPacket(Command.Cmd.End, $"Mesg: {messageCounter}");
+                                responseCmd = new CommandPacket(Command.ReqCmd.End, $"Mesg: {messageCounter}");
                                 ns.Write(responseCmd.GetPacketBuffer(), 0, CommandPacket.PACKET_SIZE);
                                 exit = true;
                             }
-                            else if (requestCmd.Cmd == Command.Cmd.End)
+                            else if (requestCmd.Cmd == Command.ReqCmd.End)
                             {
-                                responseCmd = new CommandPacket(Command.Cmd.End, null);
+                                responseCmd = new CommandPacket(Command.ReqCmd.End, null);
                                 ns.Write(responseCmd.GetPacketBuffer(), 0, CommandPacket.PACKET_SIZE);
                                 exit = true;
                             }
                             else
                             {
-                                responseCmd = new CommandPacket(Command.Cmd.Error, "Unknown");
+                                responseCmd = new CommandPacket(Command.ReqCmd.Error, "Unknown");
                                 ns.Write(responseCmd.GetPacketBuffer(), 0, CommandPacket.PACKET_SIZE);
                                 exit = true;
                             }
@@ -276,13 +276,13 @@ namespace BakenekoService
                             {
                                 if (timeoutCounter < 5)
                                 {
-                                    responseCmd = new CommandPacket(Command.Cmd.Timeout, null);
+                                    responseCmd = new CommandPacket(Command.ReqCmd.Timeout, null);
                                     ns.Write(responseCmd.GetPacketBuffer(), 0, CommandPacket.PACKET_SIZE);
                                     timeoutCounter++;
                                 }
                                 else
                                 {
-                                    responseCmd = new CommandPacket(Command.Cmd.End, "Timeout!");
+                                    responseCmd = new CommandPacket(Command.ReqCmd.End, "Timeout!");
                                     ns.Write(responseCmd.GetPacketBuffer(), 0, CommandPacket.PACKET_SIZE);
                                     exit = true;
                                 }

@@ -58,7 +58,7 @@ namespace Commons.Data.Comm
             [Random(0, CommandPacket.DELIMITER_COUNT - 1, 1)]int startDelimiterOffset)
         {
             //Arrange
-            const Command.Cmd command = Command.Cmd.DumpStats;
+            const Command.ReqCmd command = Command.ReqCmd.DumpStats;
             var buffer = CommandPacket.GetEmptyPacketBuffer();
             
             //Set up command byte
@@ -81,7 +81,7 @@ namespace Commons.Data.Comm
             [Random(CommandPacket.PACKET_SIZE - CommandPacket.DELIMITER_COUNT, CommandPacket.PACKET_SIZE - 1, 1)]int endDelimiterOffset)
         {
             //Arrange
-            const Command.Cmd command = Command.Cmd.DumpStats;
+            const Command.ReqCmd command = Command.ReqCmd.DumpStats;
             var buffer = CommandPacket.GetEmptyPacketBuffer();
 
             //Set up command byte
@@ -103,7 +103,7 @@ namespace Commons.Data.Comm
         public void Read_PacketBuffer_CommandWithNullData_Test()
         {
             //Arrange
-            const Command.Cmd command = Command.Cmd.DumpStats;
+            const Command.ReqCmd command = Command.ReqCmd.DumpStats;
             var buffer = CommandPacket.GetEmptyPacketBuffer();
 
             //Set up command byte
@@ -128,7 +128,7 @@ namespace Commons.Data.Comm
         public void Read_PacketBuffer_CommandWithEmptyData_Test()
         {
             //Arrange
-            const Command.Cmd command = Command.Cmd.DumpStats;
+            const Command.ReqCmd command = Command.ReqCmd.DumpStats;
             var buffer = CommandPacket.GetEmptyPacketBuffer();
 
             //Set up command byte
@@ -154,7 +154,7 @@ namespace Commons.Data.Comm
         {
             //Arrange
             const string data = "X";
-            const Command.Cmd command = Command.Cmd.DumpStats;
+            const Command.ReqCmd command = Command.ReqCmd.DumpStats;
             var buffer = CommandPacket.GetEmptyPacketBuffer();
 
             //Set up command byte
@@ -184,7 +184,7 @@ namespace Commons.Data.Comm
         {
             //Arrange
             const string data = ".a_b5D&X|";    //this should be the same length as CommandPacket.DATA_SIZE
-            const Command.Cmd command = Command.Cmd.DumpStats;
+            const Command.ReqCmd command = Command.ReqCmd.DumpStats;
             var buffer = CommandPacket.GetEmptyPacketBuffer();
 
             //Set up command byte
@@ -215,7 +215,7 @@ namespace Commons.Data.Comm
             //Arrange
             const string data = ".a_b5D&X|z";    //this should be the same length as CommandPacket.DATA_SIZE + 1
             var truncatedData = data.Substring(0, CommandPacket.DATA_SIZE); //Truncated data should be exactly CommandPacket.DATA_SIZE in length
-            const Command.Cmd command = Command.Cmd.DumpStats;
+            const Command.ReqCmd command = Command.ReqCmd.DumpStats;
             var buffer = CommandPacket.GetEmptyPacketBuffer();
 
             //Set up command byte

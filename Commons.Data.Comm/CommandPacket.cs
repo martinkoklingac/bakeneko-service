@@ -24,7 +24,7 @@ namespace Commons.Data.Comm
         #endregion
 
         #region CONSTRUCTORS
-        public CommandPacket(Command.Cmd cmd, string data)
+        public CommandPacket(Command.ReqCmd cmd, string data)
         {
             if (data != null && data.Length > DATA_SIZE)
                 throw new ArgumentOutOfRangeException("data", data, $"CommandPacket data component length cannot exceed {DATA_SIZE} bytes");
@@ -38,7 +38,7 @@ namespace Commons.Data.Comm
         #endregion
 
         #region PUBLIC PROPERTIES
-        public Command.Cmd Cmd { get; }
+        public Command.ReqCmd Cmd { get; }
         public string Data { get; }
         public int DataLength { get; }
         #endregion
