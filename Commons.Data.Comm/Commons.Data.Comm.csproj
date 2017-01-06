@@ -42,7 +42,16 @@
   <ItemGroup>
     <Compile Include="Command.cs" />
     <Compile Include="CommandPacket.cs" />
+    <Compile Include="Commands\Ack.cs" />
+    <Compile Include="Commands\Msg.cs" />
+    <Compile Include="Packet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Commons.Ext\Commons.Ext.csproj">
+      <Project>{553E9760-0773-44BB-B712-A7848A4DD456}</Project>
+      <Name>Commons.Ext</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
